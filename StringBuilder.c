@@ -11,11 +11,18 @@ struct StringBuilder
 struct StringBuilder * StringBuilder_init()
 {
 	struct StringBuilder * sb = (struct StringBuilder *) malloc(sizeof(struct StringBuilder));
+
+	if(sb == NULL)
+	{
+		fprintf(stderr, "CANNOT ALLOCATE MEMORY");
+		return NULL;
+	}
 	sb->string = (char *) malloc(sizeof(char));
 
 	if(sb->string == NULL)
 	{
 		fprintf(stderr, "CANNOT ALLOCATE MEMORY");
+		free(sb);
 		return NULL;
 	}
 	return sb;
